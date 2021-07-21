@@ -1,49 +1,48 @@
 package kg.unicapp.weatherapi.ui
 
-import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
+
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import kg.unicapp.weatherapi.R
-import kg.unicapp.weatherapi.WeatherClient
 import kg.unicapp.weatherapi.format
 import kg.unicapp.weatherapi.models.Constants
 import kg.unicapp.weatherapi.models.ForeCast
-import kg.unicapp.weatherapi.storage.ForeCastDatabase
 import kg.unicapp.weatherapi.ui.rv.DailyForeCastAdapter
-import java.util.*
+
+import org.koin.androidx.viewmodel.ext.android.getViewModel
+
+
 import kotlin.math.roundToInt
 
-@SuppressLint("CheckResult")
+
 class MainActivity : AppCompatActivity() {
 
-    private val db by lazy {
-        ForeCastDatabase.getInstance(applicationContext)
-    }
+
+    private lateinit var vm: MainViewModel
 
     private lateinit var dailyForeCastAdapter: DailyForeCastAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        vm = getViewModel(MainViewModel::class)
+        vm.getWeatherFromApi()
         setupViews()
         setupRecyclerViews()
-        getWeatherFromApi()
         subscribeToLiveData()
     }
 
     private fun setupViews() {
         val refresh = findViewById<TextView>(R.id.refresh)
         refresh.setOnClickListener {
-            showLoading()
-            getWeatherFromApi()
+            vm.getWeatherFromApi()
+
         }
     }
 
@@ -54,41 +53,44 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+
+
+
+    private fun subscribeToLiveData() {
+        vm.getForeCastAsLive().observe(this, Observer {
+            it?.let {
+                setValuesToViews(it)
+                loadWeatherIcon(it)
+                setDataToRecyclerViews(it)
+
+            }
+        })
+        vm._isLoading.observe(this, Observer{
+            when(it) {
+                true -> showLoading()
+                false -> hideLoading()
+            }
+        })
+    }
+
+    private fun setDataToRecyclerViews(it: ForeCast){
+        it.daily?.let { dailyList ->
+            dailyForeCastAdapter.setItems(dailyList) }
+    }
+
     private fun showLoading() {
         val progress = findViewById<View>(R.id.progress)
-        progress.visibility = View.VISIBLE
+        progress.post{
+            progress.visibility = View.VISIBLE
+        }
+
+
     }
 
     private fun hideLoading() {
         val progress = findViewById<View>(R.id.progress)
-        progress.visibility = View.GONE
-    }
+        progress.postDelayed({progress.visibility = View.INVISIBLE}, 2000)
 
-    private fun getWeatherFromApi(it: ForeCast) {
-        WeatherClient.weatherApi.fetchWeather()
-            .subscribeOn(Schedulers.io())
-            .map {
-                db.forecastDao().insert(it)
-                it
-            }
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                hideLoading()
-            },
-                {
-                    hideLoading()
-                    Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
-                })
-    }
-
-    private fun subscribeToLiveData(it: ForeCast) {
-        db.forecastDao().getAll().observe(this, Observer {
-            it?.let{
-                setValuesToViews(it)
-                loadWeatherIcon(it)
-                it.daily?.let { dailyList -> dailyForeCastAdapter.setItems(dailyList) }
-            }
-        })
     }
 
 
