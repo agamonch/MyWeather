@@ -110,7 +110,7 @@ class MainActivity : AppCompatActivity() {
         tv_temp_max.text = it.daily?.get(0)?.temp?.max?.roundToInt()?.toString()
         tv_temp_min.text = it.daily?.get(0)?.temp?.min?.roundToInt()?.toString()
         tv_feels_like.text = it.current?.feels_like?.roundToInt()?.toString()
-        tv_weather = it.current?.weather?.get(0)?.description
+        tv_weather.text = it.current?.weather?.get(0)?.description
         sunrise.text = it.current?.sunrise.format("hh:mm")
         sunset.text = it.current?.sunset.format("hh:mm")
         humidity.text = "${it.current?.humidity?.toString()} %"

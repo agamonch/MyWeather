@@ -4,13 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
-import kg.unicapp.weatherapi.extensions.repo.WeatherRepo
+import kg.unicapp.weatherapi.repo.WeatherRepo
 
 class MainViewModel(private val repo: WeatherRepo): ViewModel() {
 
     private val compositeDisposable = CompositeDisposable()
 
-    val isLoading = MutableLiveData<Boolean>()
+    private val isLoading = MutableLiveData<Boolean>()
     val _isLoading: LiveData<Boolean>
     get() = isLoading
 
@@ -39,7 +39,7 @@ class MainViewModel(private val repo: WeatherRepo): ViewModel() {
         isLoading.value = true
     }
 
-    fun hideLoading(){
+    private fun hideLoading(){
         isLoading.value = false
     }
     fun getForeCastAsLive() = repo.getForeCastFromDbAsLive()

@@ -6,11 +6,5 @@ data class Post(
     var title: String? = null,
     var body: String? = null
 
-//data class Post(
-//    var id: Int? = null,
-//    var userId: Int? = null,
-//    var title: String? = null,
-//    var body: String? = null
-
 
 )

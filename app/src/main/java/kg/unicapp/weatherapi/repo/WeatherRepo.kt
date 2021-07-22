@@ -1,4 +1,4 @@
-package kg.unicapp.weatherapi.extensions.repo
+package kg.unicapp.weatherapi.repo
 
 
 import io.reactivex.Single
@@ -14,7 +14,7 @@ class WeatherRepo (
     private val db: ForeCastDatabase,
     private val weatherApi: WeatherApi
 ){
-    fun getWeatherFromApi(it: ForeCast): Single<ForeCast> {
+    fun getWeatherFromApi(): Single<ForeCast> {
         return weatherApi.fetchWeather()
             .subscribeOn(Schedulers.io())
             .map {

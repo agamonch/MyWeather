@@ -1,19 +1,16 @@
 package kg.unicapp.weatherapi.di
 
 import android.content.Context
-
 import androidx.room.Room
-import kg.unicapp.weatherapi.extensions.repo.WeatherRepo
+import kg.unicapp.weatherapi.repo.WeatherRepo
 import kg.unicapp.weatherapi.network.WeatherApi
 import kg.unicapp.weatherapi.storage.ForeCastDatabase
 import kg.unicapp.weatherapi.ui.MainViewModel
-
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidApplication
-import org.koin.android.viewmodel.dsl.viewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
-
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
