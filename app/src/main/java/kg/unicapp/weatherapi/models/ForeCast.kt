@@ -27,7 +27,7 @@ data class CurrentForeCast(
     var temp: Double? = null,
     var feels_like: Double? = null,
     var humidity: Int? = null,
-    var weather: List<Weather>,
+    var weather: List<Weather>?
 
     )
 
@@ -42,7 +42,7 @@ data class HourlyForeCast(
     @SerializedName("dt")
     var date: Long? = null,
     var temp: Double? = null,
-    var weather: List<Weather>,
+    var weather: List<Weather>? = null,
     @SerializedName("pop")
     var probability: Double? = null
 
@@ -52,7 +52,7 @@ data class DailyForeCast(
     @SerializedName("dt")
     var date: Long? = null,
     var temp: Temperature? = null,
-    var weather: List<Weather>? = null,
+    var weather: List<Weather>?,
     @SerializedName("pop")
     var probability: Double? = null
 )

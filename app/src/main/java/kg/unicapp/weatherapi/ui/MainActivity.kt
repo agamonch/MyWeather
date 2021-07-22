@@ -14,8 +14,8 @@ import kg.unicapp.weatherapi.format
 import kg.unicapp.weatherapi.models.Constants
 import kg.unicapp.weatherapi.models.ForeCast
 import kg.unicapp.weatherapi.ui.rv.DailyForeCastAdapter
+import org.koin.android.viewmodel.ext.android.getViewModel
 
-import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 
 import kotlin.math.roundToInt
