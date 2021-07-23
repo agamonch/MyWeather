@@ -14,6 +14,7 @@ import kg.unicapp.weatherapi.format
 import kg.unicapp.weatherapi.models.Constants
 import kg.unicapp.weatherapi.models.ForeCast
 import kg.unicapp.weatherapi.ui.rv.DailyForeCastAdapter
+import kg.unicapp.weatherapi.ui.rv.HourlyForeCastAdapter
 import org.koin.android.viewmodel.ext.android.getViewModel
 
 
@@ -27,6 +28,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var vm: MainViewModel
 
     private lateinit var dailyForeCastAdapter: DailyForeCastAdapter
+    private lateinit var hourlyForeCastAdapter: HourlyForeCastAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,9 +49,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerViews() {
+        val rv_horly_forecast = findViewById<RecyclerView>(R.id.rv_hourly_forecast)
         val rv_daily_forecast = findViewById<RecyclerView>(R.id.rv_daily_forecast)
+
+        hourlyForeCastAdapter = HourlyForeCastAdapter()
         dailyForeCastAdapter = DailyForeCastAdapter()
+        rv_horly_forecast.adapter = hourlyForeCastAdapter
         rv_daily_forecast.adapter = dailyForeCastAdapter
+
 
     }
 
@@ -76,6 +83,9 @@ class MainActivity : AppCompatActivity() {
     private fun setDataToRecyclerViews(it: ForeCast){
         it.daily?.let { dailyList ->
             dailyForeCastAdapter.setItems(dailyList) }
+        it.hourly?.let { hourlyList ->
+            hourlyForeCastAdapter.setItems(hourlyList) }
+
     }
 
     private fun showLoading() {
@@ -89,7 +99,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun hideLoading() {
         val progress = findViewById<View>(R.id.progress)
-        progress.postDelayed({progress.visibility = View.INVISIBLE}, 2000)
+        progress.postDelayed({progress.visibility = View.INVISIBLE}, 1000)
 
     }
 

@@ -5,15 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="false"
+    android:background="@color/mild_blue"
     app:layoutDescription="@xml/motion"
     tools:context=".ui.MainActivity">
 
     <ProgressBar
         android:id="@+id/progress"
         style="?android:attr/progressBarStyle"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,13 +28,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:background="@android:color/holo_green_light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/tv_divider"
+            style="@style/WhiteText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="/"
@@ -45,6 +47,7 @@
 
         <TextView
             android:id="@+id/tv_temp_max"
+            style="@style/WhiteMediumLargeTextWithIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -57,9 +60,10 @@
 
         <TextView
             android:id="@+id/tv_date"
+            style="@style/GreySmallText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="18/07/2021"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@id/tv_city_name"
@@ -68,6 +72,7 @@
 
         <TextView
             android:id="@+id/tv_temperature"
+            style="@style/ExtraLargeWhiteTextWithIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -82,7 +87,6 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginEnd="8dp"
-            android:src="@drawable/ic_launcher_foreground"
             app:layout_constraintBottom_toBottomOf="@id/tv_temperature"
             app:layout_constraintEnd_toStartOf="@id/tv_temperature"
             app:layout_constraintHorizontal_chainStyle="packed"
@@ -91,6 +95,7 @@
 
         <TextView
             android:id="@+id/tv_city_name"
+            style="@style/WhiteMediumText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
@@ -102,6 +107,7 @@
 
         <TextView
             android:id="@+id/tv_feels_like"
+            style="@style/WhiteMediumLargeTextWithIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -115,6 +121,7 @@
 
         <TextView
             android:id="@+id/tv_weather"
+            style="@style/WhiteMediumText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -125,6 +132,7 @@
 
         <TextView
             android:id="@+id/tv_temp_min"
+            style="@style/WhiteMediumLargeTextWithIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="0dp"
@@ -136,10 +144,12 @@
 
         <TextView
             android:id="@+id/refresh"
+            style="@style/WhiteSmallText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
+            android:foreground="?selectableItemBackground"
             android:clickable="true"
             android:focusable="true"
             android:text="@string/refresh"
@@ -164,7 +174,7 @@
                 android:id="@+id/card_view"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:backgroundTint="@android:color/holo_blue_dark"
+                app:cardBackgroundColor="@color/transparent"
                 app:cardCornerRadius="24dp"
                 app:cardElevation="0dp">
 
@@ -183,8 +193,8 @@
                 android:id="@+id/card_view2"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
+                app:cardBackgroundColor="@color/transparent"
                 android:layout_marginTop="16dp"
-                android:backgroundTint="@android:color/holo_blue_dark"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="0dp">
 
@@ -203,9 +213,9 @@
                 android:id="@+id/card_view3"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
+                app:cardBackgroundColor="@color/transparent"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
-                android:backgroundTint="@android:color/holo_blue_dark"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="0dp">
 
@@ -216,6 +226,7 @@
 
                     <TextView
                         android:id="@+id/tv_sunrise_label"
+                        style="@style/WhiteMediumText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -225,6 +236,7 @@
 
                     <TextView
                         android:id="@+id/tv_sunrise"
+                        style="@style/WhiteMediumText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
@@ -233,6 +245,7 @@
 
                     <TextView
                         android:id="@+id/tv_sunset_label"
+                        style="@style/WhiteMediumText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -248,13 +261,14 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="24dp"
                         android:layout_marginEnd="16dp"
-                        android:background="@android:color/holo_purple"
+                        android:background="@color/grey"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_sunrise_label" />
 
                     <TextView
                         android:id="@+id/tv_sunset"
+                        style="@style/WhiteMediumText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
@@ -266,6 +280,7 @@
                         android:id="@+id/divider2"
                         android:layout_width="0dp"
                         android:layout_height="1dp"
+                        android:background="@color/grey"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="24dp"
                         android:layout_marginEnd="16dp"
@@ -275,6 +290,7 @@
 
                     <TextView
                         android:id="@+id/tv_humidity_label"
+                        style="@style/WhiteMediumText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -285,6 +301,7 @@
 
                     <TextView
                         android:id="@+id/tv_humidity"
+                        style="@style/WhiteMediumText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
