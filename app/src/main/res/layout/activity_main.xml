@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="false"
     android:background="@color/mild_blue"
+    android:fitsSystemWindows="false"
     app:layoutDescription="@xml/motion"
     tools:context=".ui.MainActivity">
 
@@ -149,9 +149,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:foreground="?selectableItemBackground"
             android:clickable="true"
             android:focusable="true"
+            android:foreground="?selectableItemBackground"
             android:text="@string/refresh"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/tv_weather" />
@@ -193,8 +193,8 @@
                 android:id="@+id/card_view2"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                app:cardBackgroundColor="@color/transparent"
                 android:layout_marginTop="16dp"
+                app:cardBackgroundColor="@color/transparent"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="0dp">
 
@@ -213,9 +213,9 @@
                 android:id="@+id/card_view3"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                app:cardBackgroundColor="@color/transparent"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/transparent"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="0dp">
 
@@ -280,10 +280,10 @@
                         android:id="@+id/divider2"
                         android:layout_width="0dp"
                         android:layout_height="1dp"
-                        android:background="@color/grey"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="24dp"
                         android:layout_marginEnd="16dp"
+                        android:background="@color/grey"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_sunset_label" />

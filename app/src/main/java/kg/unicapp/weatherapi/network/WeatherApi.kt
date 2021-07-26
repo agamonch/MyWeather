@@ -16,6 +16,5 @@ interface WeatherApi {
         @Query("appid") appid: String = "c3e48a8a5b0c893badc50cc525fa776f",
         @Query("lang") lang: String = "ru",
         @Query("units") units: String = "metric"
-
     ): Single<ForeCast>
 }

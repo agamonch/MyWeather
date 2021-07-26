@@ -9,7 +9,7 @@ import kg.unicapp.weatherapi.models.ForeCast
 @Dao
 interface ForeCastDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert (foreCast: ForeCast)
+    fun insert(foreCast: ForeCast)
 
     @Update
     fun update(foreCast: ForeCast): Completable
@@ -25,6 +25,4 @@ interface ForeCastDao {
 
     @Query("delete from ForeCast")
     fun deleteAll(): Completable
-
-
 }

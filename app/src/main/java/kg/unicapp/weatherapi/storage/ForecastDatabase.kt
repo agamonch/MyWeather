@@ -13,15 +13,11 @@ import kg.unicapp.weatherapi.models.ForeCast
     exportSchema = false
 )
 @TypeConverters(ModelsConverter::class, CollectionsConverter::class)
-abstract class ForeCastDatabase: RoomDatabase() {
+abstract class ForeCastDatabase : RoomDatabase() {
 
     abstract fun forecastDao(): ForeCastDao
 
-
     companion object {
-
         const val DB_NAME = "forecastDb"
-
-
     }
 }

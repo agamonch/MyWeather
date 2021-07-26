@@ -4,11 +4,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kg.unicapp.weatherapi.models.DailyForeCast
 
-class DailyForeCastAdapter: RecyclerView.Adapter<DailyForeCastVH>() {
+class DailyForeCastAdapter : RecyclerView.Adapter<DailyForeCastVH>() {
 
     private val items = arrayListOf<DailyForeCast>()
 
-    fun setItems(newItems: List<DailyForeCast>){
+    fun setItems(newItems: List<DailyForeCast>) {
         items.clear()
         items.addAll(newItems)
         notifyDataSetChanged()

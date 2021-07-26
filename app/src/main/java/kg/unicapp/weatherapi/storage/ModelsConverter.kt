@@ -14,5 +14,5 @@ class ModelsConverter {
 
     @TypeConverter
     fun fromJsonToCurrentForeCast(json: String?): CurrentForeCast? =
-        Gson().fromJson(json, object: TypeToken<CurrentForeCast>() {}.type)
+        Gson().fromJson(json, object : TypeToken<CurrentForeCast>() {}.type)
 }

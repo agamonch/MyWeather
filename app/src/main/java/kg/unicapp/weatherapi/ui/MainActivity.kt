@@ -18,15 +18,12 @@ import kg.unicapp.weatherapi.ui.rv.HourlyForeCastAdapter
 import org.koin.android.viewmodel.ext.android.getViewModel
 
 
-
 import kotlin.math.roundToInt
 
 
 class MainActivity : AppCompatActivity() {
 
-
     private lateinit var vm: MainViewModel
-
     private lateinit var dailyForeCastAdapter: DailyForeCastAdapter
     private lateinit var hourlyForeCastAdapter: HourlyForeCastAdapter
 
@@ -43,8 +40,8 @@ class MainActivity : AppCompatActivity() {
     private fun setupViews() {
         val refresh = findViewById<TextView>(R.id.refresh)
         refresh.setOnClickListener {
+            vm.showLoading()
             vm.getWeatherFromApi()
-
         }
     }
 
@@ -56,12 +53,7 @@ class MainActivity : AppCompatActivity() {
         dailyForeCastAdapter = DailyForeCastAdapter()
         rv_horly_forecast.adapter = hourlyForeCastAdapter
         rv_daily_forecast.adapter = dailyForeCastAdapter
-
-
     }
-
-
-
 
     private fun subscribeToLiveData() {
         vm.getForeCastAsLive().observe(this, Observer {
@@ -69,40 +61,34 @@ class MainActivity : AppCompatActivity() {
                 setValuesToViews(it)
                 loadWeatherIcon(it)
                 setDataToRecyclerViews(it)
-
             }
         })
-        vm._isLoading.observe(this, Observer{
-            when(it) {
+        vm._isLoading.observe(this, Observer {
+            when (it) {
                 true -> showLoading()
                 false -> hideLoading()
             }
         })
     }
 
-    private fun setDataToRecyclerViews(it: ForeCast){
+    private fun setDataToRecyclerViews(it: ForeCast) {
         it.daily?.let { dailyList ->
-            dailyForeCastAdapter.setItems(dailyList) }
+            dailyForeCastAdapter.setItems(dailyList)
+        }
         it.hourly?.let { hourlyList ->
-            hourlyForeCastAdapter.setItems(hourlyList) }
-
+            hourlyForeCastAdapter.setItems(hourlyList)
+        }
     }
 
     private fun showLoading() {
         val progress = findViewById<View>(R.id.progress)
-        progress.post{
-            progress.visibility = View.VISIBLE
-        }
-
-
+        progress.visibility = View.VISIBLE
     }
 
     private fun hideLoading() {
         val progress = findViewById<View>(R.id.progress)
-        progress.postDelayed({progress.visibility = View.INVISIBLE}, 1000)
-
+        progress.postDelayed({ progress.visibility = View.INVISIBLE }, 2000)
     }
-
 
     private fun setValuesToViews(it: ForeCast) {
         val tv_temp = findViewById<TextView>(R.id.tv_temperature)

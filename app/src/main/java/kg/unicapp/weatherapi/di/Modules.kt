@@ -51,5 +51,4 @@ private fun provideRetrofit(httpClient: OkHttpClient) =
         .client(httpClient)
         .build()
 
-
 private fun provideWeatherApi(retrofit: Retrofit) = retrofit.create(WeatherApi::class.java)

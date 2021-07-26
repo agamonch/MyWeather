@@ -28,11 +28,9 @@ class HourlyForeCastVH(itemView: View): RecyclerView.ViewHolder(itemView) {
             }
             tv_temp.text = item.temp?.roundToInt().toString()
 
-
             Glide.with(itemView.context)
                 .load("${Constants.iconUri}${item.weather?.get(0)?.icon}${Constants.iconFormat}")
                 .into(iv_weather_icon)
-
         }
     }
     companion object {
@@ -40,9 +38,6 @@ class HourlyForeCastVH(itemView: View): RecyclerView.ViewHolder(itemView) {
             val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_hourly_forecast, parent, false)
             return HourlyForeCastVH(view)
-
         }
     }
-
-
 }

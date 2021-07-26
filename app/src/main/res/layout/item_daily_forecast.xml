@@ -72,12 +72,4 @@
         app:layout_constraintTop_toBottomOf="@id/frameLayout"
         tools:text="25"/>
 
-
-
-
-
-
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

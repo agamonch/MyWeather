@@ -13,20 +13,18 @@ import kg.unicapp.weatherapi.models.Constants
 import kg.unicapp.weatherapi.models.DailyForeCast
 import kotlin.math.roundToInt
 
-class DailyForeCastVH(itemView: View): RecyclerView.ViewHolder(itemView) {
+class DailyForeCastVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    fun bind(item: DailyForeCast){
+    fun bind(item: DailyForeCast) {
         val tv_weekday = itemView.findViewById<TextView>(R.id.tv_weekday)
         val tv_precipitation = itemView.findViewById<TextView>(R.id.tv_precipitation)
         val tv_temp_max = itemView.findViewById<TextView>(R.id.tv_temp_max)
         val tv_min_temp = itemView.findViewById<TextView>(R.id.tv_min_temp)
         val iv_weather_icon = itemView.findViewById<ImageView>(R.id.iv_weather_icon)
 
-
-
-        itemView.run{
+        itemView.run {
             tv_weekday.text = item.date.format("dd/MM")
-            item.probability?.let{
+            item.probability?.let {
                 tv_precipitation.text = "${(it * 100).roundToInt()} %"
             }
             tv_temp_max.text = item.temp?.max?.roundToInt().toString()
@@ -35,21 +33,14 @@ class DailyForeCastVH(itemView: View): RecyclerView.ViewHolder(itemView) {
             Glide.with(itemView.context)
                 .load("${Constants.iconUri}${item.weather?.get(0)?.icon}${Constants.iconFormat}")
                 .into(iv_weather_icon)
-
-
-
         }
-
     }
-
 
     companion object {
         fun create(parent: ViewGroup): DailyForeCastVH {
             val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_daily_forecast, parent, false)
             return DailyForeCastVH(view)
-
         }
     }
-
 }

@@ -5,11 +5,11 @@ import androidx.recyclerview.widget.RecyclerView
 
 import kg.unicapp.weatherapi.models.HourlyForeCast
 
-class HourlyForeCastAdapter: RecyclerView.Adapter<HourlyForeCastVH>() {
+class HourlyForeCastAdapter : RecyclerView.Adapter<HourlyForeCastVH>() {
 
     private val items = arrayListOf<HourlyForeCast>()
 
-    fun setItems(newItems: List<HourlyForeCast>){
+    fun setItems(newItems: List<HourlyForeCast>) {
         items.clear()
         items.addAll(newItems)
         notifyDataSetChanged()
@@ -24,5 +24,4 @@ class HourlyForeCastAdapter: RecyclerView.Adapter<HourlyForeCastVH>() {
     }
 
     override fun getItemCount() = items.count()
-
 }

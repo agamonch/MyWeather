@@ -16,7 +16,6 @@ data class ForeCast(
     var current: CurrentForeCast? = null,
     var hourly: List<HourlyForeCast>? = null,
     var daily: List<DailyForeCast>? = null
-
 )
 
 data class CurrentForeCast(
@@ -28,14 +27,12 @@ data class CurrentForeCast(
     var feels_like: Double? = null,
     var humidity: Int? = null,
     var weather: List<Weather>?
-
-    )
+)
 
 data class Weather(
     var id: Long? = null,
     var description: String? = null,
     var icon: String? = null
-
 )
 
 data class HourlyForeCast(
@@ -45,7 +42,6 @@ data class HourlyForeCast(
     var weather: List<Weather>? = null,
     @SerializedName("pop")
     var probability: Double? = null
-
 )
 
 data class DailyForeCast(

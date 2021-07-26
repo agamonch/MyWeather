@@ -6,33 +6,24 @@ import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
 import kg.unicapp.weatherapi.repo.WeatherRepo
 
-class MainViewModel(private val repo: WeatherRepo): ViewModel() {
+class MainViewModel(private val repo: WeatherRepo) : ViewModel() {
 
     private val compositeDisposable = CompositeDisposable()
 
     private val isLoading = MutableLiveData<Boolean>()
     val _isLoading: LiveData<Boolean>
-    get() = isLoading
+        get() = isLoading
 
     init {
         getWeatherFromApi()
     }
 
-
-    fun getWeatherFromApi(){
-        isLoading.value = true
-
+    fun getWeatherFromApi() {
         compositeDisposable.add(
             repo.getWeatherFromApi()
-                .doOnTerminate { isLoading.value = false}
-                .doOnDispose{ isLoading.value = false }
-                .subscribe({
-                           isLoading.value =false
-                }, {
-                    isLoading.value =false
-                }))
-
-
+                .doOnTerminate { hideLoading() }
+                .subscribe({}, {})
+        )
     }
 
     fun showLoading(){

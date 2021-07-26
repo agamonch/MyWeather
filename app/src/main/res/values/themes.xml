@@ -4,24 +4,22 @@
         <item name="colorPrimary">#25E3F2FD</item>
         <item name="colorPrimaryDark">#1976D2</item>
         <item name="colorAccent">@color/colorAccent</item>
-
-
-       
         <item name="android:windowTranslucentStatus">true</item>
     </style>
-    
+
     <style name="WhiteText">
         <item name="android:textColor">@color/white</item>
-        <item name="android:gravity">center_vertical</item>        
+        <item name="android:gravity">center_vertical</item>
     </style>
+
     <style name="WhiteTextWithIcon" parent="WhiteText">
         <item name="android:drawableEnd">@drawable/ic_celsius</item>
     </style>
+
     <style name="ExtraLargeWhiteTextWithIcon" parent="WhiteTextWithIcon">
         <item name="android:textSize">64sp</item>
-
-
     </style>
+
     <style name="WhiteMediumText" parent="WhiteText">
         <item name="android:textSize">18sp</item>
     </style>
@@ -33,15 +31,15 @@
     <style name="WhiteMediumLargeText" parent="WhiteText">
         <item name="android:textSize">28sp</item>
     </style>
+
     <style name="WhiteSmallTextWithIcon" parent="WhiteTextWithIcon">
         <item name="android:textSize">12sp</item>
         <item name="android:drawableEnd">@drawable/ic_celsiussmall</item>
-
     </style>
+
     <style name="WhiteSmallTextWithWaterIcon" parent="WhiteText">
         <item name="android:textSize">12sp</item>
         <item name="android:drawableStart">@drawable/ic_drop</item>
-
     </style>
 
     <style name="GreySmallText" parent="WhiteSmallText">
@@ -52,6 +50,4 @@
         <item name="android:textSize">14sp</item>
         <item name="android:drawableEnd">@drawable/ic_celsiussmall</item>
     </style>
-
-
 </resources>
