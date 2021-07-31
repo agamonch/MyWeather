@@ -1,14 +1,17 @@
 package kg.unicapp.weatherapi.ui
 
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.firebase.messaging.FirebaseMessaging
 import kg.unicapp.weatherapi.R
 import kg.unicapp.weatherapi.format
 import kg.unicapp.weatherapi.models.Constants
@@ -35,6 +38,15 @@ class MainActivity : AppCompatActivity() {
         setupViews()
         setupRecyclerViews()
         subscribeToLiveData()
+
+        FirebaseMessaging.getInstance().token.addOnSuccessListener {
+            Log.i("Token", it)
+        }
+
+        intent.getStringExtra("Extra")?.let {
+            Toast.makeText(this, it, Toast.LENGTH_LONG).show()
+
+        }
     }
 
     private fun setupViews() {
@@ -46,24 +58,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerViews() {
-        val rv_horly_forecast = findViewById<RecyclerView>(R.id.rv_hourly_forecast)
+        val rv_hourly_forecast = findViewById<RecyclerView>(R.id.rv_hourly_forecast)
         val rv_daily_forecast = findViewById<RecyclerView>(R.id.rv_daily_forecast)
 
         hourlyForeCastAdapter = HourlyForeCastAdapter()
         dailyForeCastAdapter = DailyForeCastAdapter()
-        rv_horly_forecast.adapter = hourlyForeCastAdapter
+        rv_hourly_forecast.adapter = hourlyForeCastAdapter
         rv_daily_forecast.adapter = dailyForeCastAdapter
     }
 
     private fun subscribeToLiveData() {
-        vm.getForeCastAsLive().observe(this, Observer {
+        vm.getForeCastAsLive().observe(this, {
             it?.let {
                 setValuesToViews(it)
                 loadWeatherIcon(it)
                 setDataToRecyclerViews(it)
             }
         })
-        vm._isLoading.observe(this, Observer {
+        vm._isLoading.observe(this, {
             when (it) {
                 true -> showLoading()
                 false -> hideLoading()
@@ -90,6 +102,7 @@ class MainActivity : AppCompatActivity() {
         progress.postDelayed({ progress.visibility = View.INVISIBLE }, 2000)
     }
 
+    @SuppressLint("SetTextI18n")
     private fun setValuesToViews(it: ForeCast) {
         val tv_temp = findViewById<TextView>(R.id.tv_temperature)
         val tv_date = findViewById<TextView>(R.id.tv_date)
