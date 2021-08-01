@@ -2,6 +2,7 @@ package kg.unicapp.weatherapi.di
 
 import android.content.Context
 import androidx.room.Room
+import kg.unicapp.weatherapi.BuildConfig
 import kg.unicapp.weatherapi.repo.WeatherRepo
 import kg.unicapp.weatherapi.network.WeatherApi
 import kg.unicapp.weatherapi.storage.ForeCastDatabase
@@ -39,13 +40,15 @@ private fun provideHttpClient(): OkHttpClient {
     val interceptor =
         HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
     return OkHttpClient.Builder()
-        .addInterceptor(interceptor)
+        .apply {
+            addInterceptor(interceptor)
+        }
         .build()
 }
 
 private fun provideRetrofit(httpClient: OkHttpClient) =
     Retrofit.Builder()
-        .baseUrl("https://api.openweathermap.org/data/2.5/")
+        .baseUrl(BuildConfig.BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .client(httpClient)
