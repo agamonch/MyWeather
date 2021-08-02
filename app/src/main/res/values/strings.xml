@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">weatherAPI</string>
+    <string name="app_name">Погода Каракол</string>
     <string name="karakol">Каракол</string>
     <string name="refresh">Обновить</string>
     <string name="sunset">Закат</string>
